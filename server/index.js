@@ -1,6 +1,8 @@
 const express = require('express')
 const app = express()
 const cors  = require('cors')
+const env = require('dotenv')
+
 const port = process.env.port || 5190
 
 //midddleware 
