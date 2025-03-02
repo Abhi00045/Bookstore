@@ -13,18 +13,6 @@ const port = process.env.PORT || 8000;
 app.use(cors());
 app.use(express.json());
 
-// let MONGOURL = process.env.MONGO_URL;
-
-// mongoose.connect("mongodb://localhost:27017/book")
-//   .then(()=>{
-//     console.log("database connected successfully");
-//     app.listen(port, () => {
-//       console.log(`Example app listening on port ${port}`)
-//     });
-//   }).catch((error)=>{
-//     console.log(error);
-    
-//   })
 
 // //   const UserModel = mongoose.model("books");
 
@@ -33,3 +21,14 @@ app.use(express.json());
 //   res.json(userData); 
 // })
 
+async function startServer() {
+    try{
+        await mongoose.connect("mongodb://localhost:27017/book");
+           app.listen(port,()=> console.log("server started"+port));
+       }catch(error){
+           console.log(error);
+           
+       }
+}
+startServer();
+ 
