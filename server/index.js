@@ -15,13 +15,6 @@ app.use(express.urlencoded({extended:true}));
 app.use(express.json());
 
 
-// //   const UserModel = mongoose.model("books");
-
-// app.get('/getUsers', async(req, res) => {
-//   const userData = await Books.find();
-//   res.json(userData); 
-// })
-
 //schema
 
 const BookSchema = new mongoose.Schema({
@@ -50,27 +43,25 @@ const BookSchema = new mongoose.Schema({
 
   const Books = mongoose.model("books", BookSchema);
 
+  // fetching data
   app.get('/get', async(req,res)=>{
     const allBooks = await Books.find();
     res.json(allBooks);
-    // console.log("hii");
-    
   });
 
-// async function startServer() {
-//     try{
-//         await mongoose.connect("mongodb://localhost:27017/book", (() => {
-//           console.log("connet");
-//         }));
-//       }catch(error){
-//         console.log(error);
-        
-//       }
-//     }
-mongoose.connect("mongodb://localhost:27017/Book").then(() => {
+  // uploading data using POST
+  // app.post('/post', async(req,res)=>{
+  //   const data = req.body;
+  //   const result = await allBooks.insertOne(data);
+  //   res.send(result);
+  // });
+
+async function startServer() {
+  await mongoose.connect("mongodb://localhost:27017/Book").then(() => {
   console.log("DB is connected");
 }).catch((error) => {
   console.log("something went wrong")
 })
+}
     app.listen(port,()=> console.log("server started "+  port));   
-// startServer();
+startServer();
