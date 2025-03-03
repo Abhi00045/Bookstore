@@ -10,7 +10,7 @@ const port = process.env.PORT || 8000;
 
 //middle-ware 
 
-app.use(cors({origin: "http://localhost:5173/"}));
+app.use(cors({origin: "http://localhost:5173/get"}));
 app.use(express.urlencoded({extended:true}));
 app.use(express.json());
 
@@ -53,15 +53,24 @@ const BookSchema = new mongoose.Schema({
   app.get('/get', async(req,res)=>{
     const allBooks = await Books.find();
     res.json(allBooks);
+    // console.log("hii");
+    
   });
 
-async function startServer() {
-    try{
-        await mongoose.connect("mongodb://localhost:27017/book");
-           app.listen(port,()=> console.log("server started"+  port));   
-       }catch(error){
-           console.log(error);
-           
-       }
-}
-startServer();
+// async function startServer() {
+//     try{
+//         await mongoose.connect("mongodb://localhost:27017/book", (() => {
+//           console.log("connet");
+//         }));
+//       }catch(error){
+//         console.log(error);
+        
+//       }
+//     }
+mongoose.connect("mongodb://localhost:27017/Book").then(() => {
+  console.log("DB is connected");
+}).catch((error) => {
+  console.log("something went wrong")
+})
+    app.listen(port,()=> console.log("server started "+  port));   
+// startServer();
