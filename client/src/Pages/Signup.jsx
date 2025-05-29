@@ -1,22 +1,32 @@
 import React from 'react'
+import { useState } from 'react'
+
 
 function Signup() {
     
+    const[name , setName] = useState("");
+    const[email , setEmail] = useState("");
+    const[password , setPassword] = useState("");
+
+    const handleSumbit = (e)=>{
+        e.preventDefault();
+    }
+
   return (
     <div className="Signup_form">
         <h1>Signup</h1>
-        <form action="" method="post">
+        <form  method="post" onSubmit={handleSumbit}>
             <div className="Name">
                 <label htmlFor="Name">Name</label>
-            <input type="text" />
+            <input type="text" onChange={(e)=>setName(e.target.value)} />
             </div>
             <div className="Name">
                 <label htmlFor="Name">Email</label>
-            <input type="email" />
+            <input type="email" onChange={e => setEmail(e.target.validationMessage)} />
             </div>
             <div className="Name">
                 <label htmlFor="Name">password</label>
-            <input type="password" />
+            <input type="password" onChange={e => setPassword(e.target.value)} />
             </div>
             <div className="Name">
                 <label htmlFor="Name">Upload image</label>
