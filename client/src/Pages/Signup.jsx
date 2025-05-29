@@ -1,7 +1,7 @@
 import React from 'react'
 
 function Signup() {
-    c
+    
   return (
     <div className="Signup_form">
         <h1>Signup</h1>
